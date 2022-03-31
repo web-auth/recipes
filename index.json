@@ -3,6 +3,9 @@
     "recipes": {
         "web-auth/webauthn-framework": [
             "3.0"
+        ],
+        "web-auth/webauthn-symfony-bundle": [
+            "3.0"
         ]
     },
     "recipe-conflicts": [],
