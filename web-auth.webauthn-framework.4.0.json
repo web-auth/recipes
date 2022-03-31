@@ -1,0 +1,62 @@
+{
+    "manifests": {
+        "web-auth/webauthn-framework": {
+            "manifest": {
+                "bundles": {
+                    "Webauthn\\Bundle\\WebauthnBundle": [
+                        "all"
+                    ]
+                },
+                "copy-from-recipe": {
+                    "config/": "%CONFIG_DIR%/"
+                },
+                "env": {
+                    "RELAYING_PARTY_ID": "example.com",
+                    "RELAYING_PARTY_NAME": "My Application"
+                },
+                "post-install-output": [
+                    "  * WebAuthn Framework is almost ready. You can now configure it",
+                    "  * and create:",
+                    "    1. Your Public Key Credential Source Repository",
+                    "    2. Your User Entity Repository",
+                    "",
+                    "  * The configuration file is located in <comment>config/packages/webauthn.yaml</>",
+                    "",
+                    "  * Please read the documentation at <comment>https://webauthn-doc.spomky-labs.com/the-webauthn-server/the-symfony-way</>."
+                ]
+            },
+            "files": {
+                "config/packages/webauthn.yaml": {
+                    "contents": [
+                        "# Please see the following page for more information: https://webauthn-doc.spomky-labs.com/the-webauthn-server/the-symfony-way#configuration",
+                        "",
+                        "webauthn:",
+                        "    mapping:",
+                        "        credential_repository: 'Webauthn\\Bundle\\Repository\\DummyPublicKeyCredentialSourceRepository' # CREATE YOUR REPOSITORY AND CHANGE THIS!",
+                        "        user_repository: 'Webauthn\\Bundle\\Repository\\DummyPublicKeyCredentialUserEntityRepository' # CREATE YOUR REPOSITORY AND CHANGE THIS!",
+                        "        creation_profiles:",
+                        "            default:",
+                        "                rp:",
+                        "                    name: '%env(RELAYING_PARTY_NAME)%' # Please adapt the env file with the correct relaying party ID or set null",
+                        "                    id: '%env(RELAYING_PARTY_ID)%' # Please adapt the env file with the correct relaying party ID or set null",
+                        "        request_profiles:",
+                        "            default:",
+                        "                rp_id: '%env(RELAYING_PARTY_ID)%' # Please adapt the env file with the correct relaying party ID or set null",
+                        ""
+                    ],
+                    "executable": false
+                },
+                "config/routes/webauthn.yaml": {
+                    "contents": [
+                        "webauthn_routes:",
+                        "    resource: .",
+                        "    type: webauthn",
+                        ""
+                    ],
+                    "executable": false
+                }
+            },
+            "ref": "409904911861c2137ca948bfec98b068005064ea"
+        }
+    }
+}
