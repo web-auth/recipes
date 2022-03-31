@@ -1,0 +1,8 @@
+  * WebAuthn Framework is ready. You can now configure it
+  * and create:
+    1. Your Public Key Credential Source Repository
+    2. Your User Entity Repository
+
+  * The configuration file is located in <comment>config/packages/webauthn.yaml</>
+
+  * Please read the documentation at <comment>https://webauthn-doc.spomky-labs.com/the-webauthn-server/the-symfony-way</>.
